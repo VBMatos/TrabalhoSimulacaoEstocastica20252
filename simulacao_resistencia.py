@@ -1,38 +1,43 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from scipy.stats import norm
+
 from perda_resistencia_temperatura import perda_resist_temp
-from perda_resistencia_compressao import perda_resist_compres
-from perda_resistencia_erosao import perda_resist_erosao
+from calcula_resistencia_compressao import calcula_resist_compres
+from calcula_taxa_erosao import calcula_taxa_erosao
+from calcula_entropia import calcula_entropia
 
-from calcula_entropia import calcular_entropia
-
-# np.random.seed(42)
 
 # Parâmetros
 sigma_room = 0
 sigma_high = 100
-n_sim = 100_000
+n_sim = 10_000
 
-presist_temp = perda_resist_temp(sigma_room, sigma_high, n_sim)
+rng = np.random.default_rng()
+
+presist_temp = perda_resist_temp(sigma_room, sigma_high, n_sim, rng)
 
 sigma_carga = 100
 sigma_area = 100
 
-presist_compres = perda_resist_compres(sigma_carga, sigma_area, presist_temp, n_sim)
+presist_compres = calcula_resist_compres(sigma_carga, sigma_area, presist_temp, n_sim)
 
 sigma_peso_antes = 100
 sigma_peso_depois = 100
 sigma_densidade = 100
 
-taxa_erosao = perda_resist_erosao(sigma_peso_antes, sigma_peso_depois, sigma_densidade, presist_temp, n_sim)
+taxa_erosao = calcula_taxa_erosao(sigma_peso_antes, sigma_peso_depois, sigma_densidade, presist_temp, presist_compres, n_sim)
 
 k = 10 # Constante de proporcionalidade
-entropia = calcular_entropia(presist_temp, presist_compres, k)
+entropia = calcula_entropia(presist_temp, presist_compres, k)
 
-print("Presist (array):", np.round(presist_temp, 4))
-print("Rcomp (array):", np.round(presist_compres, 4))
-print("Entropia (array):", np.round(entropia, 6))
+# Log
+print("Presist (array):", np.round(presist_temp, 3))
+print("Rcomp (array):", np.round(presist_compres, 3))
+print("Taxa Erosão (array):", np.round(taxa_erosao, 3))
+print("Entropia (array):", np.round(entropia, 3))
+
 
 # Plot
 plt.figure(1)

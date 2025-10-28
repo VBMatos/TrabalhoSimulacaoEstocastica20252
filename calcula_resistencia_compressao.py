@@ -1,10 +1,11 @@
-import numpy as np
+def calcula_resist_compres(Presist_temp, n_sim, rng):
 
-def perda_resist_compres(sigma_carga, sigma_area, presist_temp, n_sim):
+    P_mean, P_std = 20000, 500    # N
+    A_mean, A_std = 0.005, 0.0001 # m²
 
     # Amostras aleatórias
-    fcu_carga = np.random.normal(100, sigma_carga, n_sim) # Média da carga de ruptura
-    fcu_area = np.random.normal(100, sigma_area, n_sim) # Média da área do refratário
+    fcu_carga = rng.normal(P_mean, P_std, n_sim) # Média da carga de ruptura
+    fcu_area = rng.normal(A_mean, A_std, n_sim) # Média da área do refratário
 
     # Calcula resistência
-    return (fcu_carga / fcu_area) - presist_temp
+    return (fcu_carga / fcu_area) - Presist_temp

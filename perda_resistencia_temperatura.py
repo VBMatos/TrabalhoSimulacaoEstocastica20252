@@ -1,10 +1,11 @@
-import numpy as np
+def perda_resist_temp(n_sim, rng):
 
-def perda_resist_temp(sigma_room, sigma_high, n_sim):
+    fcu_high_mean, fcu_high_std = 50, 2 # MPa
+    fcu_room_mean, fcu_room_std = 60, 3 # MPa
 
-    # Gera amostras aleatórias
-    fcu_high = np.random.normal(100, sigma_high, n_sim) # Média da resistência após altas temperaturas
-    fcu_room = np.random.normal(100, sigma_room, n_sim) # Média da resistência em temperatura ambiente
+    # Amostras aleatórias
+    fcu_high = rng.normal(fcu_high_mean, fcu_high_std, n_sim) # Média da resistência após altas temperaturas
+    fcu_room = rng.normal(fcu_room_mean, fcu_room_std, n_sim) # Média da resistência em temperatura ambiente
 
     # Calcula resistência
     return (fcu_high - fcu_room) / fcu_room

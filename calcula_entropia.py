@@ -1,7 +1,4 @@
 import numpy as np
 
-def calcular_entropia(presist, rcomp, k):
-    # if rcomp == 0:
-    #     raise ValueError("Rcomp não pode ser zero.")
-
+def calcula_entropia(presist, rcomp, k):
     return k * np.abs(presist) / rcomp
