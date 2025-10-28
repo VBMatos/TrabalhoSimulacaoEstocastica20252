@@ -1,13 +1,24 @@
-def calcula_taxa_erosao(Presist_temp, Rcomp, n_sim, rng):
+def calcula_taxa_erosao(resist_compr, n_sim, rng):
+    # Parâmetros
+    media_peso_antes = 1000
+    desvio_peso_antes = 10
 
-    P1_mean, P1_std = 1000, 10               # g
-    P2_mean, P2_std = 950, 10                # g
-    dma_geom_mean, dma_geom_std = 1.0, 0.02  # adimensional
+    media_peso_depois = 950
+    desvio_peso_depois = 10
 
-    # Amostras aleatórias
-    fcu_peso_antes = rng.normal(P1_mean, P1_std, n_sim)            # Média do peso do refratário antes do ciclo
-    fcu_peso_depois = rng.normal(P2_mean, P2_std, n_sim)           # Média do peso do refratário após o ciclo
-    fcu_densidade = rng.normal(dma_geom_mean, dma_geom_std, n_sim) # Média da densidade geométrica do refratário
+    media_densidade = 1.0
+    desvio_densidade = 0.02
+
+
+    # Distribuição Normal do peso do refratário antes do uso
+    distr_peso_antes = rng.normal(media_peso_antes, desvio_peso_antes, n_sim)
+
+    # Distribuição Normal do peso do refratário após o uso
+    distr_peso_depois = rng.normal(media_peso_depois, desvio_peso_depois, n_sim)
+
+    # Distribuição Normal da densidade geométrica do refratário
+    distr_densidade = rng.normal(media_densidade, desvio_densidade, n_sim)
+
 
     # Calcula taxa
-    return ((fcu_peso_antes - fcu_peso_depois) / fcu_densidade) - (Presist_temp * Rcomp)
+    return ((distr_peso_antes - distr_peso_depois) / distr_densidade) - resist_compr

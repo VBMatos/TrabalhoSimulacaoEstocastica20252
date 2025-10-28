@@ -1,11 +1,18 @@
 def perda_resist_temp(n_sim, rng):
+    # Parâmetros
+    media_resist_alta_tempr = 50
+    desvio_resist_alta_tempr = 2
 
-    fcu_high_mean, fcu_high_std = 50, 2 # MPa
-    fcu_room_mean, fcu_room_std = 60, 3 # MPa
+    media_resist_baixa_tempr = 60
+    desvio_resist_baixa_tempr = 3
 
-    # Amostras aleatórias
-    fcu_high = rng.normal(fcu_high_mean, fcu_high_std, n_sim) # Média da resistência após altas temperaturas
-    fcu_room = rng.normal(fcu_room_mean, fcu_room_std, n_sim) # Média da resistência em temperatura ambiente
 
-    # Calcula resistência
-    return (fcu_high - fcu_room) / fcu_room
+    # Distribuição Normal da resistência após altas temperaturas
+    distr_alta_tempr = rng.normal(media_resist_alta_tempr, desvio_resist_alta_tempr, n_sim)
+
+    # Distribuição Normal da resistência em temperatura ambiente
+    distr_baixa_tempr = rng.normal(media_resist_baixa_tempr, desvio_resist_baixa_tempr, n_sim)
+
+
+    # Calcula perda de resistência
+    return (distr_alta_tempr - distr_baixa_tempr) / distr_baixa_tempr

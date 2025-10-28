@@ -1,11 +1,18 @@
-def calcula_resist_compres(Presist_temp, n_sim, rng):
+def calcula_resist_compres(p_resist_tempr, n_sim, rng):
+    # Parâmetros
+    media_carga_ruptura = 20000
+    desvio_carga_ruptura = 500
 
-    P_mean, P_std = 20000, 500    # N
-    A_mean, A_std = 0.005, 0.0001 # m²
+    media_area_refratario = 0.005
+    desvio_area_refratario = 0.0001
 
-    # Amostras aleatórias
-    fcu_carga = rng.normal(P_mean, P_std, n_sim) # Média da carga de ruptura
-    fcu_area = rng.normal(A_mean, A_std, n_sim) # Média da área do refratário
+
+    # Distribuição Normal da carga de ruptura
+    distr_carga_ruptura = rng.normal(media_carga_ruptura, desvio_carga_ruptura, n_sim)
+
+    # Distribuição Normal da área do refratário
+    distr_area_refratario = rng.normal(media_area_refratario, desvio_area_refratario, n_sim)
+
 
     # Calcula resistência
-    return (fcu_carga / fcu_area) - Presist_temp
+    return (distr_carga_ruptura / distr_area_refratario) - p_resist_tempr
