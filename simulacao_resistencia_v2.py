@@ -7,12 +7,12 @@ from plot_resultados import plot_results
 
 n_sim = 100_000  # Número de simulações
 
-rng = np.random.default_rng()
+rng = np.random
 
 # Perda de resistência devido às altas temperaturas
 p_resist_tempr = perda_resist_temp(n_sim, rng)
 
-# Resistência à compresão em altas temperaturas
+# Resistência à compresão
 resist_compr = calcula_resist_compres(p_resist_tempr, n_sim, rng)
 
 # Taxa de volume da erosão

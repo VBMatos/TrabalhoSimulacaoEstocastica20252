@@ -1,7 +1,7 @@
 def calcula_resist_compres(p_resist_tempr, n_sim, rng):
     # Parâmetros
     media_carga_ruptura = 20000
-    desvio_carga_ruptura = 500
+    desvio_carga_ruptura = 1000
 
     media_area_refratario = 0.005
     desvio_area_refratario = 0.0001

@@ -1,10 +1,10 @@
 def calcula_taxa_erosao(resist_compr, n_sim, rng):
     # Parâmetros
     media_peso_antes = 1000
-    desvio_peso_antes = 10
+    desvio_peso_antes = 50
 
-    media_peso_depois = 950
-    desvio_peso_depois = 10
+    media_peso_depois = 500
+    desvio_peso_depois = 25
 
     media_densidade = 1.0
     desvio_densidade = 0.02

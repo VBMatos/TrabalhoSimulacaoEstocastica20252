@@ -1,10 +1,10 @@
 def perda_resist_temp(n_sim, rng):
     # Parâmetros
     media_resist_alta_tempr = 50
-    desvio_resist_alta_tempr = 2
+    desvio_resist_alta_tempr = 5
 
-    media_resist_baixa_tempr = 60
-    desvio_resist_baixa_tempr = 3
+    media_resist_baixa_tempr = 100
+    desvio_resist_baixa_tempr = 0.1
 
 
     # Distribuição Normal da resistência após altas temperaturas
