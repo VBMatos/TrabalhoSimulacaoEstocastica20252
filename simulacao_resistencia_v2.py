@@ -18,10 +18,5 @@ resist_compr = calcula_resist_compres(p_resist_tempr, n_sim, rng)
 # Taxa de volume da erosão
 taxa_vol_erosao = calcula_taxa_erosao(resist_compr, n_sim, rng)
 
-print(f"Média da Perda de Resitência = {np.mean(p_resist_tempr):.3f}")
-print(f"Média da Resitência à Compressão = {np.mean(resist_compr):.3f}")
-print(f"Média da Taxa de Erosão = {np.mean(taxa_vol_erosao):.3f}")
-print(f"Desvio da Taxa de Erosão = {np.std(taxa_vol_erosao):.3f}")
-
 # Plot
 plot_results(p_resist_tempr, resist_compr, taxa_vol_erosao)
