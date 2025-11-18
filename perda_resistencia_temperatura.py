@@ -1,18 +1,15 @@
 def perda_resist_temp(n_sim, rng):
-    # Parâmetros
-    media_resist_alta_tempr = 50
-    desvio_resist_alta_tempr = 5
 
-    media_resist_baixa_tempr = 100
-    desvio_resist_baixa_tempr = 0.1
+    # Distribuição uniforme, considerando que a resistência em temperatura
+    # ambiente pode variar entre A e B (máxima entropia dado o intervalo) (MPa)
+    res_room_temperature = rng.uniform(40, 65, n_sim)
 
+    # Para cada valor de res_room_temperature, sorteia-se uniformemente,
+    # considerando que a resistência pode variar entre R e C
+    perda_prop = rng.beta(3, 4, n_sim)
+    res_high_temperature = res_room_temperature * (1 - perda_prop)
 
-    # Distribuição Normal da resistência após altas temperaturas
-    distr_alta_tempr = rng.normal(media_resist_alta_tempr, desvio_resist_alta_tempr, n_sim)
+    # Calcula perda proporcional de resistência (%)
+    perda_resist = (res_room_temperature - res_high_temperature) / res_room_temperature
 
-    # Distribuição Normal da resistência em temperatura ambiente
-    distr_baixa_tempr = rng.normal(media_resist_baixa_tempr, desvio_resist_baixa_tempr, n_sim)
-
-
-    # Calcula perda de resistência
-    return (distr_alta_tempr - distr_baixa_tempr) / distr_baixa_tempr
+    return perda_resist

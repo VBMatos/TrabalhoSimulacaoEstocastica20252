@@ -1,24 +1,18 @@
 def calcula_taxa_erosao(resist_compr, n_sim, rng):
     # Parâmetros
-    media_peso_antes = 1000
-    desvio_peso_antes = 50
+    media_peso_antes = 460
 
-    media_peso_depois = 500
-    desvio_peso_depois = 25
+    media_peso_depois_min = 200
+    media_peso_depois_max = 455
 
-    media_densidade = 1.0
-    desvio_densidade = 0.02
+    media_densidade = 3.0
+    vari_densidade = 0.1
 
+    # Distribuição Uniforme do peso do refratário após o uso
+    distr_peso_depois = rng.uniform(media_peso_depois_min, media_peso_depois_max, n_sim)
 
-    # Distribuição Normal do peso do refratário antes do uso
-    distr_peso_antes = rng.normal(media_peso_antes, desvio_peso_antes, n_sim)
-
-    # Distribuição Normal do peso do refratário após o uso
-    distr_peso_depois = rng.normal(media_peso_depois, desvio_peso_depois, n_sim)
-
-    # Distribuição Normal da densidade geométrica do refratário
-    distr_densidade = rng.normal(media_densidade, desvio_densidade, n_sim)
-
+    # Distribuição Uniforme da densidade geométrica do refratário
+    distr_densidade = rng.normal(media_densidade, vari_densidade, n_sim)
 
     # Calcula taxa
-    return ((distr_peso_antes - distr_peso_depois) / distr_densidade) - resist_compr
+    return ((media_peso_antes - distr_peso_depois) / distr_densidade) - resist_compr
