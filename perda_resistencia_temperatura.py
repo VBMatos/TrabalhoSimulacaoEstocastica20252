@@ -6,7 +6,7 @@ def perda_resist_temp(n_sim, rng):
 
     # Para cada valor de res_room_temperature, sorteia-se uniformemente,
     # considerando que a resistência pode variar entre R e C
-    perda_prop = rng.beta(3, 4, n_sim)
+    perda_prop = rng.beta(0.3, 0.4, n_sim)
     res_high_temperature = res_room_temperature * (1 - perda_prop)
 
     # Calcula perda proporcional de resistência (%)
