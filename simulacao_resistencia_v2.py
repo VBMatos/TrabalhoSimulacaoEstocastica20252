@@ -20,7 +20,7 @@ resist_compr = calcula_resist_compres(p_resist_tempr, n_sim, rng)
 taxa_vol_erosao = calcula_taxa_erosao(resist_compr, n_sim, rng)
 
 # Logs
-# log_results(p_resist_tempr, resist_compr, taxa_vol_erosao)
+log_results(taxa_vol_erosao)
 
 # Plot
 plot_results(p_resist_tempr, resist_compr, taxa_vol_erosao)

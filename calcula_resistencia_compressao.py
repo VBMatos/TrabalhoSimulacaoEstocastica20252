@@ -1,4 +1,3 @@
-import numpy as np
 from scipy.stats import truncnorm
 
 def calcula_resist_compres(p_resist_tempr, n_sim, rng):
@@ -19,7 +18,7 @@ def calcula_resist_compres(p_resist_tempr, n_sim, rng):
 
     media_area_refratario = 170 #(cm³)
 
-    # Calcula resistência
+    # Calcula resistência (MPa)
     res_base = distr_carga_ruptura / media_area_refratario
 
     return res_base - (res_base * p_resist_tempr)

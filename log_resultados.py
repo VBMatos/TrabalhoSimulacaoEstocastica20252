@@ -1,11 +1,11 @@
 import numpy as np
 
-def log_results(p_resist_tempr, resist_compr, taxa_vol_erosao):
+def log_results(taxa_vol_erosao):
     print("----------------------------------------------")
-    print("Resumo estatístico da perda_resist:")
-    print(f"Média: {np.mean(p_resist_tempr):.2f}")
-    print(f"Mediana: {np.median(p_resist_tempr):.2f}")
-    print(f"Desvio padrão: {np.std(p_resist_tempr):.2f}")
-    print(f"Mínimo: {np.min(p_resist_tempr):.2f}, Máximo: {np.max(p_resist_tempr):.2f}")
+    print("Resumo estatístico da 'Taxa de Erosão':")
+    print(f"Média: {np.mean(taxa_vol_erosao):.2f}")
+    print(f"Mediana: {np.median(taxa_vol_erosao):.2f}")
+    print(f"Desvio padrão: {np.std(taxa_vol_erosao):.2f}")
+    print(f"Mínimo: {np.min(taxa_vol_erosao):.2f} | Máximo: {np.max(taxa_vol_erosao):.2f}")
     print("----------------------------------------------")
 

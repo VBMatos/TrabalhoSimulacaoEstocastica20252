@@ -8,11 +8,17 @@ def calcula_taxa_erosao(resist_compr, n_sim, rng):
     media_densidade = 3.0 #(g/cm³)
     vari_densidade = 0.1 #(g/cm³)
 
+    media_vol_inicial = media_peso_antes / media_densidade
+
     # Distribuição Uniforme do peso do refratário após o uso
     distr_peso_depois = rng.uniform(media_peso_depois_min, media_peso_depois_max, n_sim)
 
     # Distribuição Uniforme da densidade geométrica do refratário
     distr_densidade = rng.normal(media_densidade, vari_densidade, n_sim)
 
-    # Calcula taxa
-    return (((distr_peso_depois - media_peso_antes) / distr_densidade) - resist_compr) * -1
+    # Calcula taxa (%)
+    vol_erodido = ((media_peso_antes - distr_peso_depois) / distr_densidade) - resist_compr
+    taxa_erosao = (vol_erodido / media_vol_inicial) * 100
+
+    #Desconsidera valores abaixo de Zero
+    return [v for v in (taxa_erosao * -1) if v > 0]
