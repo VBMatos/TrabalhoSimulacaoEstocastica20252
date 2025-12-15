@@ -13,7 +13,7 @@ def calcula_taxa_erosao(resist_compr, n_sim, rng):
     # Distribuição Uniforme do peso do refratário após o uso
     distr_peso_depois = rng.uniform(media_peso_depois_min, media_peso_depois_max, n_sim)
 
-    # Distribuição Uniforme da densidade geométrica do refratário
+    # Distribuição Normal da densidade geométrica do refratário
     distr_densidade = rng.normal(media_densidade, vari_densidade, n_sim)
 
     # Calcula taxa (%)
